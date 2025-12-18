@@ -1,0 +1,121 @@
+{
+  "library": {
+    "keywords": ["library", "books", "knowledge resource centre", "issue", "return", "library timing"],
+    "response": "📚 GITAM Knowledge Resource Centre (Library) provides textbooks, reference books, journals, and e-resources. The library is open Monday to Saturday from 8:00 AM to 8:00 PM and Sunday from 10:00 AM to 4:00 PM. Students can issue and return books using their student ID card.\n\n📞 For library assistance, contact the Knowledge Resource Centre.",
+    "source": "https://www.gitam.edu/library",
+    "contact": {
+      "office": "Knowledge Resource Centre (Library)",
+      "email": "library@gitam.edu"
+    }
+  },
+
+  "transport_vizag": {
+    "keywords": ["bus", "transport", "gajuwaka", "nad", "rtc complex", "vizag"],
+    "response": "🚌 GITAM Visakhapatnam Campus provides bus transportation from major locations such as Gajuwaka, NAD X Roads, RTC Complex, Jagadamba Centre, Railway Station, and Gopalapatnam. Morning buses operate between 7:00 AM and 8:00 AM. Evening return buses leave the campus between 4:00 PM and 5:15 PM.\n\n📞 For transport-related queries, contact the Transport Office.",
+    "source": "https://www.gitam.edu/visakhapatnam/campus-life/transport-facilities",
+    "contact": {
+      "office": "Transport Office – GITAM Visakhapatnam",
+      "email": "info@gitam.edu"
+    }
+  },
+
+  "transport_hyderabad": {
+    "keywords": ["hyderabad bus", "ecil", "17h", "219", "tsrtc", "hyderabad"],
+    "response": "🚌 GITAM Hyderabad Campus is well connected through TSRTC public transport. Common routes include 17H and 219 from ECIL Terminal. Buses stop near the GITAM University bus stop.\n\n📞 For transport assistance, contact the campus administration office.",
+    "source": "https://www.gitam.edu/hyderabad/campus-life/transport-facilities",
+    "contact": {
+      "office": "Campus Administration – GITAM Hyderabad",
+      "email": "info@gitam.edu"
+    }
+  },
+
+  "timetable": {
+    "keywords": ["timetable", "class timing", "schedule", "periods", "academic calendar"],
+    "response": "🕒 Class timetables and academic schedules are published on the GITAM student portal and department notice boards. The academic calendar includes semester start dates, holidays, and examination schedules.\n\n📞 For timetable clarifications, contact your department academic office.",
+    "source": "https://www.gitam.edu/academics",
+    "contact": {
+      "office": "Academic Affairs Office",
+      "email": "academics@gitam.edu"
+    }
+  },
+
+  "events": {
+    "keywords": ["event", "fest", "conference", "workshop", "seminar", "hackathon", "pramana"],
+    "response": "🎉 GITAM University conducts technical fests, cultural programs, conferences, workshops, seminars, and hackathons throughout the year. Event updates are published on the official website and campus notice boards.\n\n📞 Event-related queries are handled by the Directorate of Student Life.",
+    "source": "https://www.gitam.edu/events",
+    "contact": {
+      "office": "Directorate of Student Life",
+      "email": "studentlife@gitam.edu"
+    }
+  },
+
+  "hostel": {
+    "keywords": ["hostel", "accommodation", "room", "mess", "warden"],
+    "response": "🏠 GITAM provides on-campus hostel facilities for boys and girls with mess services, study areas, recreation spaces, and 24/7 security. Hostel allotment is subject to availability.\n\n📞 Hostel-related concerns should be addressed to the Hostel Office.",
+    "source": "https://www.gitam.edu/campus-life/hostels",
+    "contact": {
+      "office": "Hostel Office – GITAM",
+      "email": "hostels@gitam.edu"
+    }
+  },
+
+  "admission": {
+    "keywords": ["admission", "apply", "eligibility", "join", "gat"],
+    "response": "🎓 Admissions at GITAM University are based on eligibility criteria and entrance examinations such as the GITAM Admission Test (GAT) and other recognized national-level tests.\n\n📞 For admission details, contact the Admissions Office.",
+    "source": "https://www.gitam.edu/admissions",
+    "contact": {
+      "office": "Admissions Office – GITAM University",
+      "email": "admissions@gitam.edu"
+    }
+  },
+
+  "examinations": {
+    "keywords": ["exam", "examination", "hall ticket", "results"],
+    "response": "📝 Examination schedules, hall tickets, internal assessments, and results are managed by the University Examination Branch and published through the student portal.\n\n📞 For exam-related queries, contact the Examination Branch.",
+    "source": "https://www.gitam.edu/examinations",
+    "contact": {
+      "office": "Examination Branch – GITAM",
+      "email": "exams@gitam.edu"
+    }
+  },
+
+  "id_card": {
+    "keywords": ["id card", "identity", "lost id", "replacement"],
+    "response": "🆔 Student ID cards are issued after enrollment. For lost or damaged ID cards, students must apply for a replacement at the Administrative Office with valid identification.\n\n📞 Contact the Admin Office for assistance.",
+    "source": "https://www.gitam.edu/student-life",
+    "contact": {
+      "office": "Administrative Office – GITAM",
+      "email": "studentaffairs@gitam.edu"
+    }
+  },
+
+  "facilities": {
+    "keywords": ["facilities", "sports", "gym", "medical", "wifi", "labs", "atm"],
+    "response": "🏫 GITAM campuses offer sports complexes, gymnasiums, medical centres, cafeterias, laboratories, libraries, hostels, and Wi-Fi enabled academic blocks.\n\n📞 Facility-related issues can be reported to the Campus Facilities Office.",
+    "source": "https://www.gitam.edu/campus-life",
+    "contact": {
+      "office": "Campus Facilities Office",
+      "email": "info@gitam.edu"
+    }
+  },
+
+  "placements": {
+    "keywords": ["placements", "jobs", "internship", "career"],
+    "response": "💼 The GITAM Career Guidance Centre supports students with internships, training programs, and campus placements through recruitment drives and skill development sessions.\n\n📞 For placement support, contact the Career Guidance Centre.",
+    "source": "https://www.gitam.edu/career-guidance-centre",
+    "contact": {
+      "office": "Career Guidance Centre – GITAM",
+      "email": "placements@gitam.edu"
+    }
+  },
+
+  "courses": {
+    "keywords": ["courses", "programs", "degrees", "btech", "mtech", "mba", "phd", "cybersecurity"],
+    "response": "🎓 GITAM University offers Undergraduate, Postgraduate, and Doctoral programs across Engineering, Science, Management, Pharmacy, Law, Architecture, Humanities, and Health Sciences.\n\n📞 For course details, contact the Admissions Office.",
+    "source": "https://www.gitam.edu/programs",
+    "contact": {
+      "office": "Admissions Office – GITAM University",
+      "email": "admissions@gitam.edu"
+    }
+  }
+}
