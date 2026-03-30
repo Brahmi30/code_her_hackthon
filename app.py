@@ -12,7 +12,7 @@ st.set_page_config(
 )
 
 # =================================================
-# BACKGROUND IMAGE FUNCTION
+# BACKGROUND IMAGE
 # =================================================
 def set_bg(image_file):
     with open(image_file, "rb") as f:
@@ -43,46 +43,35 @@ if "user_type" not in st.session_state:
     st.session_state.user_type = "User"
 
 # =================================================
-# LOGIN PAGE (FIXED WORKING VERSION)
+# LOGIN PAGE
 # =================================================
 if not st.session_state.logged_in:
 
-    # Optional background (comment if unwanted)
     set_bg("splash_screen.png")
 
     st.markdown("""
     <style>
 
-    header[data-testid="stHeader"] {
-        display: none;
-    }
+    header {visibility:hidden;}
 
-    .block-container {
-        padding-top: 2rem;
-    }
-
-    .login-wrapper {
+    .login-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 80vh;
+        height: 85vh;
     }
 
     .login-box {
-        background: rgba(0, 0, 0, 0.55);
-        backdrop-filter: blur(10px);
+        background: rgba(0,0,0,0.6);
         padding: 40px;
         border-radius: 20px;
         width: 400px;
         text-align: center;
+        backdrop-filter: blur(10px);
     }
 
-    .login-box h2 {
+    h2, p {
         color: white;
-    }
-
-    .login-box p {
-        color: #e0fffa;
     }
 
     input {
@@ -97,14 +86,13 @@ if not st.session_state.logged_in:
         border-radius: 25px;
         width: 100%;
         padding: 10px;
-        font-weight: bold;
         margin-top: 10px;
     }
 
     </style>
     """, unsafe_allow_html=True)
 
-    st.markdown("<div class='login-wrapper'><div class='login-box'>", unsafe_allow_html=True)
+    st.markdown("<div class='login-container'><div class='login-box'>", unsafe_allow_html=True)
 
     st.markdown("## 🔐 GITAM Genie Login")
     st.markdown("✨ Enter the lamp to awaken the Genie ✨")
@@ -115,7 +103,6 @@ if not st.session_state.logged_in:
     if st.button("Enter the Lamp 🧞‍♂️"):
         if email and password:
             st.session_state.logged_in = True
-            st.session_state.user_type = "User"
             st.rerun()
         else:
             st.error("Enter email & password")
@@ -131,16 +118,9 @@ if not st.session_state.logged_in:
 # =================================================
 # LOAD KNOWLEDGE
 # =================================================
-try:
-    with open("knowledge.json", "r", encoding="utf-8") as f:
-        knowledge = json.load(f)
-except:
-    st.error("knowledge.json missing")
-    st.stop()
+with open("knowledge.json", "r", encoding="utf-8") as f:
+    knowledge = json.load(f)
 
-# =================================================
-# RESPONSE ENGINE
-# =================================================
 FAST_KB = []
 for item in knowledge.values():
     for kw in item["keywords"]:
@@ -154,23 +134,52 @@ def get_response(user_input):
     return "🧞‍♂️ I couldn’t find that. Try Library, Transport, Courses, or Hostel."
 
 # =================================================
-# MAIN STYLE
+# MAIN STYLE (FIXED TEXT COLORS)
 # =================================================
 st.markdown("""
 <style>
 
 .stApp {
-    background: radial-gradient(circle at top, #c8f3ec, #eafaf7);
+    background: linear-gradient(135deg, #e6f7f4, #ffffff);
 }
 
+/* Sidebar */
 section[data-testid="stSidebar"] {
-    background: linear-gradient(180deg, #063f38, #0f6f61);
+    background: #0f6f61;
 }
 section[data-testid="stSidebar"] * {
     color: white !important;
 }
 
-footer {visibility: hidden;}
+/* Chat messages */
+div[data-testid="stChatMessage"] {
+    color: black !important;
+}
+
+/* Assistant message */
+div[data-testid="stChatMessage"][data-role="assistant"] {
+    background: #ffffff !important;
+    border-left: 5px solid #20c997;
+    border-radius: 15px;
+}
+
+/* User message */
+div[data-testid="stChatMessage"][data-role="user"] {
+    background: #dff3ef !important;
+    border-right: 5px solid #0f6f61;
+    border-radius: 15px;
+    margin-left: auto;
+}
+
+/* Force text visible */
+div[data-testid="stChatMessage"] * {
+    color: black !important;
+}
+
+/* Chat input */
+textarea {
+    color: black !important;
+}
 
 </style>
 """, unsafe_allow_html=True)
