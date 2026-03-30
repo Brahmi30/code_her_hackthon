@@ -1,6 +1,5 @@
 import streamlit as st
 import json
-import base64
 
 # =================================================
 # PAGE CONFIG
@@ -10,25 +9,6 @@ st.set_page_config(
     page_icon="🧞‍♂️",
     layout="wide"
 )
-
-# =================================================
-# BACKGROUND IMAGE
-# =================================================
-def set_bg(image_file):
-    with open(image_file, "rb") as f:
-        encoded = base64.b64encode(f.read()).decode()
-    st.markdown(
-        f"""
-        <style>
-        .stApp {{
-            background-image: url("data:image/png;base64,{encoded}");
-            background-size: cover;
-            background-position: center;
-        }}
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
 
 # =================================================
 # SESSION STATE
@@ -43,16 +23,18 @@ if "user_type" not in st.session_state:
     st.session_state.user_type = "User"
 
 # =================================================
-# LOGIN PAGE
+# LOGIN PAGE (BLACK THEME)
 # =================================================
 if not st.session_state.logged_in:
-
-    set_bg("splash_screen.png")
 
     st.markdown("""
     <style>
 
     header {visibility:hidden;}
+
+    .stApp {
+        background-color: #000000;
+    }
 
     .login-container {
         display: flex;
@@ -62,12 +44,12 @@ if not st.session_state.logged_in:
     }
 
     .login-box {
-        background: rgba(0,0,0,0.6);
+        background: #111111;
         padding: 40px;
         border-radius: 20px;
         width: 400px;
         text-align: center;
-        backdrop-filter: blur(10px);
+        box-shadow: 0px 0px 20px rgba(0,255,200,0.2);
     }
 
     h2, p {
@@ -75,8 +57,8 @@ if not st.session_state.logged_in:
     }
 
     input {
-        background: rgba(255,255,255,0.3) !important;
-        color: black !important;
+        background: #222 !important;
+        color: white !important;
         border-radius: 10px !important;
     }
 
@@ -134,13 +116,14 @@ def get_response(user_input):
     return "🧞‍♂️ I couldn’t find that. Try Library, Transport, Courses, or Hostel."
 
 # =================================================
-# MAIN STYLE (FIXED TEXT COLORS)
+# MAIN UI STYLE (BLACK THEME)
 # =================================================
 st.markdown("""
 <style>
 
 .stApp {
-    background: linear-gradient(135deg, #e6f7f4, #ffffff);
+    background-color: #000000;
+    color: white;
 }
 
 /* Sidebar */
@@ -153,32 +136,25 @@ section[data-testid="stSidebar"] * {
 
 /* Chat messages */
 div[data-testid="stChatMessage"] {
-    color: black !important;
+    color: white !important;
 }
 
-/* Assistant message */
+/* Assistant */
 div[data-testid="stChatMessage"][data-role="assistant"] {
-    background: #ffffff !important;
+    background: #1e1e1e !important;
     border-left: 5px solid #20c997;
-    border-radius: 15px;
 }
 
-/* User message */
+/* User */
 div[data-testid="stChatMessage"][data-role="user"] {
-    background: #dff3ef !important;
-    border-right: 5px solid #0f6f61;
-    border-radius: 15px;
-    margin-left: auto;
+    background: #0f6f61 !important;
+    border-right: 5px solid #20c997;
 }
 
-/* Force text visible */
-div[data-testid="stChatMessage"] * {
-    color: black !important;
-}
-
-/* Chat input */
+/* Input */
 textarea {
-    color: black !important;
+    color: white !important;
+    background: #222 !important;
 }
 
 </style>
@@ -208,7 +184,7 @@ with st.sidebar:
 # =================================================
 # MAIN UI
 # =================================================
-st.markdown("<h1 style='text-align:center;color:#0f6f61;'>🧞‍♂️ GITAM Genie</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align:center;'>🧞‍♂️ GITAM Genie</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align:center;'>✨ Ask anything about campus ✨</p>", unsafe_allow_html=True)
 
 col1, col2, col3, col4 = st.columns(4)
@@ -227,12 +203,11 @@ if col4.button("🏠 Hostel"):
 
 st.markdown("---")
 
-# Chat display
+# Chat
 for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
 
-# Chat input
 prompt = st.chat_input("Ask your question...")
 
 if prompt:
