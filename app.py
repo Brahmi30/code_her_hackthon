@@ -23,78 +23,44 @@ if "user_type" not in st.session_state:
     st.session_state.user_type = "User"
 
 # =================================================
-# LOGIN PAGE (BLACK THEME)
+# GLOBAL STYLE (BLACK THEME)
+# =================================================
+st.markdown("""
+<style>
+.stApp {
+    background-color: black;
+    color: white;
+}
+</style>
+""", unsafe_allow_html=True)
+
+# =================================================
+# LOGIN PAGE (STREAMLIT CENTERED)
 # =================================================
 if not st.session_state.logged_in:
 
-    st.markdown("""
-    <style>
+    st.markdown("<h1 style='text-align:center;'>🔐 GITAM Genie Login</h1>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align:center;'>✨ Enter the lamp to awaken the Genie ✨</p>", unsafe_allow_html=True)
 
-    header {visibility:hidden;}
+    # CENTER USING COLUMNS (BEST METHOD)
+    col1, col2, col3 = st.columns([1,2,1])
 
-    .stApp {
-        background-color: #000000;
-    }
+    with col2:
+        email = st.text_input("Email")
+        password = st.text_input("Password", type="password")
 
-    .login-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 85vh;
-    }
+        if st.button("Enter the Lamp 🧞‍♂️"):
+            if email and password:
+                st.session_state.logged_in = True
+                st.rerun()
+            else:
+                st.error("Enter email & password")
 
-    .login-box {
-        background: #111111;
-        padding: 40px;
-        border-radius: 20px;
-        width: 400px;
-        text-align: center;
-        box-shadow: 0px 0px 20px rgba(0,255,200,0.2);
-    }
-
-    h2, p {
-        color: white;
-    }
-
-    input {
-        background: #222 !important;
-        color: white !important;
-        border-radius: 10px !important;
-    }
-
-    .stButton > button {
-        background: linear-gradient(135deg, #0f6f61, #20c997);
-        color: white !important;
-        border-radius: 25px;
-        width: 100%;
-        padding: 10px;
-        margin-top: 10px;
-    }
-
-    </style>
-    """, unsafe_allow_html=True)
-
-    st.markdown("<div class='login-container'><div class='login-box'>", unsafe_allow_html=True)
-
-    st.markdown("## 🔐 GITAM Genie Login")
-    st.markdown("✨ Enter the lamp to awaken the Genie ✨")
-
-    email = st.text_input("", placeholder="📧 Email")
-    password = st.text_input("", placeholder="🔑 Password", type="password")
-
-    if st.button("Enter the Lamp 🧞‍♂️"):
-        if email and password:
+        if st.button("Continue as Guest ✨"):
             st.session_state.logged_in = True
+            st.session_state.user_type = "Guest"
             st.rerun()
-        else:
-            st.error("Enter email & password")
 
-    if st.button("Continue as Guest ✨"):
-        st.session_state.logged_in = True
-        st.session_state.user_type = "Guest"
-        st.rerun()
-
-    st.markdown("</div></div>", unsafe_allow_html=True)
     st.stop()
 
 # =================================================
@@ -113,59 +79,13 @@ def get_response(user_input):
     for kw, item in FAST_KB:
         if kw in q:
             return f"{item['response']}\n\n🔗 Source: {item['source']}"
-    return "🧞‍♂️ I couldn’t find that. Try Library, Transport, Courses, or Hostel."
-
-# =================================================
-# MAIN UI STYLE (BLACK THEME)
-# =================================================
-st.markdown("""
-<style>
-
-.stApp {
-    background-color: #000000;
-    color: white;
-}
-
-/* Sidebar */
-section[data-testid="stSidebar"] {
-    background: #0f6f61;
-}
-section[data-testid="stSidebar"] * {
-    color: white !important;
-}
-
-/* Chat messages */
-div[data-testid="stChatMessage"] {
-    color: white !important;
-}
-
-/* Assistant */
-div[data-testid="stChatMessage"][data-role="assistant"] {
-    background: #1e1e1e !important;
-    border-left: 5px solid #20c997;
-}
-
-/* User */
-div[data-testid="stChatMessage"][data-role="user"] {
-    background: #0f6f61 !important;
-    border-right: 5px solid #20c997;
-}
-
-/* Input */
-textarea {
-    color: white !important;
-    background: #222 !important;
-}
-
-</style>
-""", unsafe_allow_html=True)
+    return "🧞‍♂️ I couldn’t find that."
 
 # =================================================
 # SIDEBAR
 # =================================================
 with st.sidebar:
     st.markdown("## 🧞‍♂️ GITAM Genie")
-    st.markdown("*Your campus assistant* ✨")
 
     if st.session_state.user_type == "Guest":
         st.info("Guest Mode")
@@ -185,7 +105,6 @@ with st.sidebar:
 # MAIN UI
 # =================================================
 st.markdown("<h1 style='text-align:center;'>🧞‍♂️ GITAM Genie</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align:center;'>✨ Ask anything about campus ✨</p>", unsafe_allow_html=True)
 
 col1, col2, col3, col4 = st.columns(4)
 
