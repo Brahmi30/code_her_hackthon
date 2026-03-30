@@ -43,9 +43,11 @@ if "user_type" not in st.session_state:
     st.session_state.user_type = "User"
 
 # =================================================
-# LOGIN PAGE (FULL SCREEN FIXED)
+# LOGIN PAGE (FIXED WORKING VERSION)
 # =================================================
 if not st.session_state.logged_in:
+
+    # Optional background (comment if unwanted)
     set_bg("splash_screen.png")
 
     st.markdown("""
@@ -56,35 +58,22 @@ if not st.session_state.logged_in:
     }
 
     .block-container {
-        padding-top: 0rem !important;
+        padding-top: 2rem;
     }
 
     .login-wrapper {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-
         display: flex;
         justify-content: center;
         align-items: center;
-
-        z-index: 9999;
-        overflow: hidden;
-    }
-
-    body {
-        overflow: hidden;
+        height: 80vh;
     }
 
     .login-box {
         background: rgba(0, 0, 0, 0.55);
-        backdrop-filter: blur(12px);
+        backdrop-filter: blur(10px);
         padding: 40px;
-        border-radius: 22px;
-        width: 420px;
-        box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+        border-radius: 20px;
+        width: 400px;
         text-align: center;
     }
 
@@ -94,23 +83,12 @@ if not st.session_state.logged_in:
 
     .login-box p {
         color: #e0fffa;
-        margin-bottom: 18px;
     }
 
-    .login-box input {
+    input {
         background: rgba(255,255,255,0.3) !important;
         color: black !important;
-        border-radius: 12px !important;
-        border: none;
-        height: 44px !important;
-    }
-
-    .login-box input::placeholder {
-        color: black !important;
-    }
-
-    label {
-        display: none !important;
+        border-radius: 10px !important;
     }
 
     .stButton > button {
@@ -119,8 +97,8 @@ if not st.session_state.logged_in:
         border-radius: 25px;
         width: 100%;
         padding: 10px;
-        margin-top: 10px;
         font-weight: bold;
+        margin-top: 10px;
     }
 
     </style>
@@ -134,22 +112,18 @@ if not st.session_state.logged_in:
     email = st.text_input("", placeholder="📧 Email")
     password = st.text_input("", placeholder="🔑 Password", type="password")
 
-    col1, col2 = st.columns(2)
-
-    with col1:
-        if st.button("Enter the Lamp 🧞‍♂️"):
-            if email and password:
-                st.session_state.logged_in = True
-                st.session_state.user_type = "User"
-                st.rerun()
-            else:
-                st.error("Enter email & password")
-
-    with col2:
-        if st.button("Continue as Guest ✨"):
+    if st.button("Enter the Lamp 🧞‍♂️"):
+        if email and password:
             st.session_state.logged_in = True
-            st.session_state.user_type = "Guest"
+            st.session_state.user_type = "User"
             st.rerun()
+        else:
+            st.error("Enter email & password")
+
+    if st.button("Continue as Guest ✨"):
+        st.session_state.logged_in = True
+        st.session_state.user_type = "Guest"
+        st.rerun()
 
     st.markdown("</div></div>", unsafe_allow_html=True)
     st.stop()
@@ -165,7 +139,7 @@ except:
     st.stop()
 
 # =================================================
-# FAST RESPONSE ENGINE
+# RESPONSE ENGINE
 # =================================================
 FAST_KB = []
 for item in knowledge.values():
@@ -180,7 +154,7 @@ def get_response(user_input):
     return "🧞‍♂️ I couldn’t find that. Try Library, Transport, Courses, or Hostel."
 
 # =================================================
-# MAIN UI STYLE
+# MAIN STYLE
 # =================================================
 st.markdown("""
 <style>
@@ -223,14 +197,11 @@ with st.sidebar:
         st.rerun()
 
 # =================================================
-# MAIN TITLE
+# MAIN UI
 # =================================================
 st.markdown("<h1 style='text-align:center;color:#0f6f61;'>🧞‍♂️ GITAM Genie</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align:center;'>✨ Ask anything about campus ✨</p>", unsafe_allow_html=True)
 
-# =================================================
-# QUICK BUTTONS
-# =================================================
 col1, col2, col3, col4 = st.columns(4)
 
 if col1.button("📚 Library"):
@@ -247,13 +218,12 @@ if col4.button("🏠 Hostel"):
 
 st.markdown("---")
 
-# =================================================
-# CHAT
-# =================================================
+# Chat display
 for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
 
+# Chat input
 prompt = st.chat_input("Ask your question...")
 
 if prompt:
